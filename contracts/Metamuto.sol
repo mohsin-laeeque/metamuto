@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-contract MutoToken is ERC20, Ownable {
+contract Metamuto is ERC20, Ownable {
   using SafeMath for uint256;
 
   bool private _inSwapAndLiquify;
@@ -30,7 +30,7 @@ contract MutoToken is ERC20, Ownable {
   mapping(address => bool) public isExcludedFromFee;
   mapping(address => bool) public blacklist;
 
-  constructor() ERC20("MutoToken", "MUTO") {
+  constructor() ERC20("Metamuto", "MUTO") {
     maxSupply = 10_000_000 ether; // 10 million
     founderAllocation = 1_000_000 ether; // 1 million
 
@@ -205,7 +205,7 @@ contract MutoToken is ERC20, Ownable {
     blacklist[_account] = true;
   }
 
-  function mintTeamAllocation(address _address, uint256 _amount) public onlyOwner {
+  function mintFounderAllocation(address _address, uint256 _amount) public onlyOwner {
     founderAllocation -= _amount;
     require(founderAllocation >= _amount, "FOUNDER:Minting exceed");
     _mint(_address, _amount);
@@ -213,7 +213,7 @@ contract MutoToken is ERC20, Ownable {
 
   function mint(address _address, uint256 _amount) public onlyOwner {
     maxSupply -= _amount;
-    require(maxSupply >= _amount, "TA:Minted exceed limite");
+    require(maxSupply >= _amount, "Max:Minting exceed");
     _mint(_address, _amount);
   }
 }
