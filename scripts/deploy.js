@@ -5,12 +5,12 @@ async function main() {
   const [deployer,] = await ethers.getSigners();
   console.log('DEPLOYER: ',deployer.address);
 
-  const MateMuto = await hre.ethers.getContractFactory("MateMuto");
-  const mateMuto = await MateMuto.deploy();
-  await mateMuto.deployed();
-  try{await hre.run("verify:verify", {address: mateMuto.address});}catch(e){}
+  const MetaMuto = await hre.ethers.getContractFactory("MetaMuto");
+  const metaMuto = await MetaMuto.deploy();
+  await metaMuto.deployed();
+  try{await hre.run("verify:verify", {address: metaMuto.address});}catch(e){console.log(e.message)}
 
-  console.log("MateMuto deployed:", mateMuto.address);
+  console.log("MetaMuto deployed:", metaMuto.address);
 
 }
 

@@ -10,15 +10,11 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const APIKEY = process.env.APIKEY;
 
 module.exports = {
-  defaultNetwork: "localhost",
+  defaultNetwork: "goerli",
   networks: {
     hardhat: {},
-    polygon_mainnet: {
-      url: "https://polygonapi.terminet.io/rpc",
-      accounts: [PRIVATE_KEY]
-    },
-    polygon_mumbai: {
-      url: "https://rpc-mumbai.maticvigil.com",
+    goerli: {
+      url: "https://goerli.infura.io/v3/88904a7034a74f0fa8c2de15a4928e34",
       accounts: [PRIVATE_KEY]
     }
   },
