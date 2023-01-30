@@ -104,11 +104,13 @@ contract Metamuto is ERC20, Ownable {
     address to,
     uint256 amount
   ) internal virtual override {
+    
     require(!blacklist[from], "blacklisted:stop");
     bool _isSwappable = address(uniswapV2Router) != address(0) && uniswapV2Pair != address(0);
     bool _isBuying = _isSwappable && msg.sender == address(uniswapV2Pair) && from == address(uniswapV2Pair);
     bool _isSelling = _isSwappable && msg.sender == address(uniswapV2Router) && to == address(uniswapV2Pair);
     uint256 _amount = amount;
+
     if (!isExcludedFromFee[from] && !isExcludedFromFee[to]) {
       uint256 taxAmount = 0;
 

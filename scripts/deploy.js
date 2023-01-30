@@ -8,8 +8,7 @@ async function main() {
   const Metamuto = await hre.ethers.getContractFactory("Metamuto");
   const metamuto = await Metamuto.deploy();
   await metamuto.deployed();
-
-  await metamuto.deployTransaction.wait(6);
+  await metamuto.deployTransaction.wait(2);
   
   try{await hre.run("verify:verify", {address: metamuto.address});}catch(e){console.log(e.message)}
 
